@@ -996,7 +996,7 @@ export default {
         },
         updateValue(event, valueStr, insertedValueStr, operation) {
             let currentValue = this.$refs.input.$el.value;
-            let newValue = null;
+            let newValue;
 
             if (valueStr != null) {
                 newValue = this.parseValue(valueStr);

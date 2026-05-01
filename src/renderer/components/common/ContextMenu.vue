@@ -11,7 +11,7 @@ SPDX-License-Identifier: MIT
 <script lang="ts" setup>
 // https://primefaces.org/primevue/contextmenu
 
-import ContextMenu, { ContextMenuProps } from "primevue/contextmenu";
+import ContextMenu, { ContextMenuProps, ContextMenuMethods } from "primevue/contextmenu";
 import { ref } from "vue";
 
 defineProps<ContextMenuProps>();
@@ -21,12 +21,12 @@ defineEmits<{
     (e: "toggle", event: Event): void;
 }>();
 
-const contextMenu = ref<ContextMenu>();
+const contextMenu = ref<ContextMenuMethods>();
 
 defineExpose<{
-    hide: ContextMenu["show"];
-    show: ContextMenu["show"];
-    toggle: ContextMenu["show"];
+    hide: ContextMenuMethods["show"];
+    show: ContextMenuMethods["show"];
+    toggle: ContextMenuMethods["show"];
 }>({
     hide,
     show,

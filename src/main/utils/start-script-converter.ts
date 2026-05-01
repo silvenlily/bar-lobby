@@ -16,7 +16,7 @@ import { AllyTeam, Bot, Game, Player, Team } from "@main/model/start-script";
  */
 class StartScriptConverter {
     public generateScriptStr(battle: BattleWithMetadata): string {
-        let scriptStr = "";
+        let scriptStr: string;
         if (!battle.isOnline) {
             const script = this.offlineBattleToStartScript(battle);
             scriptStr = this.generateScriptString(script);

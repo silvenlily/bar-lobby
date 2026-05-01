@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 <template>
     <PopOutPanel :open="modelValue">
         <TabView v-model:activeIndex="activeTabIndex" class="messages-tabview">
-            <TabPanel v-for="[userId, messages] in chatStore.userChats" :key="userId">
+            <TabPanel v-for="[userId, messages] in chatStore.userChats" :value="userId" :key="userId">
                 <template #header>
                     <div class="tab-header">
                         <div>
@@ -42,7 +42,7 @@ SPDX-License-Identifier: MIT
                     <Button @click="sendDirectMessage(userId, text)">{{ t("lobby.navbar.messages.send") }}</Button>
                 </div>
             </TabPanel>
-            <TabPanel>
+            <TabPanel value="chatbox">
                 <template #header>
                     <Icon :icon="chatPlus" />
                 </template>

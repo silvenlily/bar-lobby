@@ -51,8 +51,8 @@ function setObservee(el: HTMLElement, binding: DirectiveBinding) {
     observees.set(el, {
         element: el,
         callback: binding.value,
-        once: binding.modifiers.once,
-        out: binding.modifiers.out,
+        once: binding.modifiers.once ?? false,
+        out: binding.modifiers.out ?? false,
     });
 }
 

@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 <template>
     <PopOutPanel :open="modelValue" class="flex-col flex-grow fullheight">
         <TabView v-model:activeIndex="activeIndex" class="flex-col flex-grow fullheight">
-            <TabPanel :header="t('lobby.navbar.friends.title')">
+            <TabPanel value=0 :header="t('lobby.navbar.friends.title')">
                 <div class="flex-col gap-lg flex-grow fullheight">
                     <div class="flex-row gap-md">
                         <div>
@@ -81,7 +81,7 @@ SPDX-License-Identifier: MIT
                     </div>
                 </div>
             </TabPanel>
-            <TabPanel :header="t('lobby.navbar.friends.blocked')"> TODO </TabPanel>
+            <TabPanel value=1 :header="t('lobby.navbar.friends.blocked')"> TODO </TabPanel>
         </TabView>
     </PopOutPanel>
 </template>

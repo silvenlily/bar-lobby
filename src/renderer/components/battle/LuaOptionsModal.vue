@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 <template>
     <Modal ref="modal" :title="title" no-padding>
         <TabView class="lua-options-panel">
-            <TabPanel v-for="section of sections.filter((section) => !section.hidden)" :key="section.key" :header="section.name">
+            <TabPanel v-for="section of sections.filter((section) => !section.hidden)" :value="section.key" :key="section.key" :header="section.name">
                 <div class="gridform">
                     <template v-for="o in section.options.filter((option) => !option.hidden)" :key="o.key">
                         <div>

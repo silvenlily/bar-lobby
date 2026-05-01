@@ -14,12 +14,12 @@
     "compilerOptions": {
         "composite": true,
         "types": ["node"],
-        "baseUrl": ".",
+        //"baseUrl": ".",
         "paths": {
-            "@main/*": ["src/main/*"],
-            "@preload/*": ["src/preload/*"],
-            "@renderer/*": ["src/renderer/*"],
-            "$/*": ["vendor/*"]
+            "@main/*": ["./src/main/*"],
+            "@preload/*": ["./src/preload/*"],
+            "@renderer/*": ["./src/renderer/*"],
+            "$/*": ["./vendor/*"]
         },
         "strict": true,
         "strictNullChecks": true,

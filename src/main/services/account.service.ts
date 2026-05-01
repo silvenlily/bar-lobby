@@ -41,7 +41,7 @@ async function getToken() {
         try {
             return safeStorage.decryptString(Buffer.from(token, "base64"));
         } catch (e) {
-            log.error("Failed to decrypt token, wiping account data", e);
+            log.error(`Failed to decrypt token, wiping account data ${e}`);
             await wipe();
         }
     }
@@ -54,7 +54,7 @@ async function getRefreshToken() {
         try {
             return safeStorage.decryptString(Buffer.from(refreshToken, "base64"));
         } catch (e) {
-            log.error("Failed to decrypt refreshToken, wiping account data", e);
+            log.error(`Failed to decrypt refreshToken, wiping account data ${e}`);
             await wipe();
         }
     }
