@@ -38,7 +38,7 @@ jobs:
                   npm -v
 
             - name: Install dependencies
-              run: npm ci
+              run: npm ci --verbose
 
             - name: Electron Build
               run: |
