@@ -94,7 +94,8 @@ SPDX-License-Identifier: MIT
 
 <script lang="js">
 import Ripple from "primevue/ripple";
-import { DomHandler, UniqueComponentId } from "primevue/utils";
+import { useId } from "vue";
+import { getWidth, hasClass, findSingle, focus, getOffset } from "@primeuix/utils/dom";
 
 export default {
     name: "TabView",
@@ -163,7 +164,7 @@ export default {
     },
     watch: {
         "$attrs.id": function (newValue) {
-            this.id = newValue || UniqueComponentId();
+            this.id = newValue || useId();
         },
         activeIndex(newValue) {
             this.d_activeIndex = newValue;
@@ -172,7 +173,7 @@ export default {
         },
     },
     mounted() {
-        this.id = this.id || UniqueComponentId();
+        this.id = this.id || useId();
 
         this.updateInkBar();
         if (this.scrollable) this.updateButtonState();
@@ -208,13 +209,13 @@ export default {
         },
         onPrevButtonClick() {
             const content = this.$refs.content;
-            const width = DomHandler.getWidth(content) - this.getVisibleButtonWidths();
+            const width = getWidth(content) - this.getVisibleButtonWidths();
             const pos = content.scrollLeft - width;
             content.scrollLeft = pos <= 0 ? 0 : pos;
         },
         onNextButtonClick() {
             const content = this.$refs.content;
-            const width = DomHandler.getWidth(content) - this.getVisibleButtonWidths();
+            const width = getWidth(content) - this.getVisibleButtonWidths();
             const pos = content.scrollLeft + width;
             const lastPos = content.scrollWidth - width;
             content.scrollLeft = pos >= lastPos ? lastPos : pos;
@@ -305,18 +306,18 @@ export default {
             const headerElement = selfCheck ? tabElement : tabElement.nextElementSibling;
 
             return headerElement
-                ? DomHandler.hasClass(headerElement, "p-disabled") || DomHandler.hasClass(headerElement, "p-tabview-ink-bar")
+                ? hasClass(headerElement, "p-disabled") || hasClass(headerElement, "p-tabview-ink-bar")
                     ? this.findNextHeaderAction(headerElement)
-                    : DomHandler.findSingle(headerElement, ".p-tabview-header-action")
+                    : findSingle(headerElement, ".p-tabview-header-action")
                 : null;
         },
         findPrevHeaderAction(tabElement, selfCheck = false) {
             const headerElement = selfCheck ? tabElement : tabElement.previousElementSibling;
 
             return headerElement
-                ? DomHandler.hasClass(headerElement, "p-disabled") || DomHandler.hasClass(headerElement, "p-tabview-ink-bar")
+                ? hasClass(headerElement, "p-disabled") || hasClass(headerElement, "p-tabview-ink-bar")
                     ? this.findPrevHeaderAction(headerElement)
-                    : DomHandler.findSingle(headerElement, ".p-tabview-header-action")
+                    : findSingle(headerElement, ".p-tabview-header-action")
                 : null;
         },
         findFirstHeaderAction() {
@@ -337,7 +338,7 @@ export default {
         },
         changeFocusedTab(event, element) {
             if (element) {
-                DomHandler.focus(element);
+                focus(element);
                 this.scrollInView({ element });
 
                 if (this.selectOnFocus) {
@@ -357,13 +358,13 @@ export default {
         updateInkBar() {
             let tabHeader = this.$refs.nav.children[this.d_activeIndex];
 
-            this.$refs.inkbar.style.width = DomHandler.getWidth(tabHeader) + "px";
-            this.$refs.inkbar.style.left = DomHandler.getOffset(tabHeader).left - DomHandler.getOffset(this.$refs.nav).left + "px";
+            this.$refs.inkbar.style.width = getWidth(tabHeader) + "px";
+            this.$refs.inkbar.style.left = getOffset(tabHeader).left - getOffset(this.$refs.nav).left + "px";
         },
         updateButtonState() {
             const content = this.$refs.content;
             const { scrollLeft, scrollWidth } = content;
-            const width = DomHandler.getWidth(content);
+            const width = getWidth(content);
 
             this.isPrevButtonDisabled = scrollLeft === 0;
             this.isNextButtonDisabled = parseInt(scrollLeft) === scrollWidth - width;
@@ -371,7 +372,7 @@ export default {
         getVisibleButtonWidths() {
             const { prevBtn, nextBtn } = this.$refs;
 
-            return [prevBtn, nextBtn].reduce((acc, el) => (el ? acc + DomHandler.getWidth(el) : acc), 0);
+            return [prevBtn, nextBtn].reduce((acc, el) => (el ? acc + getWidth(el) : acc), 0);
         },
         getTabHeaderClass(tab, i) {
             return [

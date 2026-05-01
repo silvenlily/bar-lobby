@@ -17,7 +17,7 @@ const log = logger("main-window");
 
 export function createWindow() {
     const settings = settingsService.getSettings();
-    log.info("Creating main window with settings: ", settings);
+    log.info(`Creating main window with settings: ${settings}`);
 
     function getWindowSize(windowedHeight: number) {
         return {
@@ -25,6 +25,8 @@ export function createWindow() {
             height: windowedHeight,
         };
     }
+
+    log.info(`Preload path: ${path.join(__dirname, "../build/preload.js")}`);
 
     const mainWindow = new BrowserWindow({
         title: "Beyond All Reason",
@@ -42,6 +44,9 @@ export function createWindow() {
             preload: path.join(__dirname, "../build/preload.js"),
             zoomFactor: 1,
             spellcheck: false,
+            contextIsolation: true,
+            nodeIntegration: false,
+            sandbox: true,
         },
     });
 
@@ -87,6 +92,14 @@ export function createWindow() {
 
     webContents.on("render-process-gone", (event, details) => {
         log.error(details);
+    });
+
+    webContents.on("did-fail-load", (_event, errorCode, errorDescription) => {
+        log.error(`did-fail-load: ${errorCode} ${errorDescription}`);
+    });
+
+    webContents.on("did-finish-load", () => {
+        log.info("Renderer finished loading");
     });
 
     // Disable new window creation

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import "primevue/resources/primevue.min.css";
+//import "primevue/resources/primevue.min.css";
 import "flag-icons/css/flag-icons.min.css";
 import "primeicons/primeicons.css";
 import "@renderer/styles/styles.scss";

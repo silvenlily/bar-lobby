@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT
 
 <template>
     <Control class="select" v-bind="$props">
-        <Dropdown
+        <Select
             v-bind="$props"
             :filterPlaceholder="t('lobby.components.controls.select.search')"
             :autoFilterFocus="true"
@@ -15,21 +15,28 @@ SPDX-License-Identifier: MIT
             @update:modelValue="handleEvent"
         >
             <slot />
-        </Dropdown>
+        </Select>
     </Control>
 </template>
 
 <script lang="ts" setup>
-import Dropdown, { DropdownProps } from "primevue/dropdown";
+//import Dropdown, { DropdownProps } from "primevue/dropdown";
+import Select, { SelectProps } from "primevue/select";
 
 import Control from "@renderer/components/controls/Control.vue";
 import { useTypedI18n } from "@renderer/i18n";
 const { t } = useTypedI18n();
 
+/*
 export interface Props extends DropdownProps {
     disabled?: boolean;
     label?: string;
-}
+}*/
+
+type Props = SelectProps & {
+    disabled?: boolean;
+    label?: string;
+};
 
 defineProps<Props>();
 
