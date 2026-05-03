@@ -33,7 +33,7 @@ export async function fetchImageToBase64(url: string) {
         const contentType = response.headers.get("content-type");
         return `data:${contentType};base64,${base64Image}`;
     } catch (error) {
-        log.error("Error fetching image:", error);
+        log.error(`Error fetching image: ${error}`);
     }
 }
 
@@ -73,7 +73,7 @@ const fetchNewsRssFeed: FetchNewsRssFeed = async (numberOfNews) => {
         );
         return newsFeed;
     } catch (error) {
-        log.error("Error fetching news feed:", error);
+        log.error(`Error fetching news feed: ${error}`);
     }
 };
 
@@ -86,7 +86,7 @@ const fetchDevlogRssFeed: FetchDevlogRssFeed = async () => {
         devlogFeed = (await extract(DEVLOG_RSS_URL, {}, {})) as NewsFeedData;
         return devlogFeed;
     } catch (error) {
-        log.error("Error fetching devlog feed:", error);
+        log.error(`Error fetching devlog feed: ${error}`);
     }
 };
 

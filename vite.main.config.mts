@@ -18,6 +18,9 @@ export default defineConfig({
                 "parse-replay-worker": path.resolve(__dirname, "src/main/content/replays/parse-replay-worker.ts"),
                 "map-image-worker": path.resolve(__dirname, "src/main/content/maps/map-image-worker.ts"),
             },
+            // declare utf-8-validate external so vite doesn't try to bundle it
+            // utf-8-validate it only has performance improvements for node versions before 18
+            external: ["utf-8-validate"],
         },
         lib: {
             entry: path.resolve(__dirname, "src/main/main.ts"),

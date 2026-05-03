@@ -34,7 +34,7 @@ export default class RedirectHandler {
     public async start(): Promise<string> {
         this.server = http.createServer((req, res) => this.handleRequest(req, res));
         this.server.on("error", (err) => {
-            log.error("Error in redirect handler server", err);
+            log.error(`Error in redirect handler server ${err}`);
             this.close();
         });
         // Times out after some time to prevent leaving a running server in case of

@@ -49,7 +49,7 @@ export class FileStore<T extends TObject> {
         if (isValid) {
             await this.write();
         } else {
-            log.error(`Error validating file: ${this.filePath}`, this.validator.errors);
+            log.error(`Error validating file: ${this.filePath} ${this.validator.errors}`);
         }
         return this.model;
     }
@@ -62,10 +62,10 @@ export class FileStore<T extends TObject> {
             if (isValid) {
                 Object.assign(this.model, model);
             } else {
-                log.error(`Error validating file: ${this.filePath}`, this.validator.errors);
+                log.error(`Error validating file: ${this.filePath} ${this.validator.errors}`);
             }
         } catch (e) {
-            log.error(`Error reading file: ${this.filePath}`, e);
+            log.error(`Error reading file: ${this.filePath} ${e}`);
         }
     }
 

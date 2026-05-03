@@ -82,7 +82,7 @@ SPDX-License-Identifier: MIT
 <script>
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
-import { DomHandler } from "primevue/utils";
+import { getSelection } from "@primeuix/utils/dom";
 
 export default {
     name: "InputNumber",
@@ -972,7 +972,7 @@ export default {
         onInputClick() {
             const currentValue = this.$refs.input.$el.value;
 
-            if (!this.readonly && currentValue !== DomHandler.getSelection()) {
+            if (!this.readonly && currentValue !== getSelection()) {
                 this.initCursor();
             }
         },
@@ -996,7 +996,7 @@ export default {
         },
         updateValue(event, valueStr, insertedValueStr, operation) {
             let currentValue = this.$refs.input.$el.value;
-            let newValue = null;
+            let newValue;
 
             if (valueStr != null) {
                 newValue = this.parseValue(valueStr);
@@ -1150,7 +1150,7 @@ export default {
         onInputFocus(event) {
             this.focused = true;
 
-            if (!this.disabled && !this.readonly && this.$refs.input.$el.value !== DomHandler.getSelection() && this.highlightOnFocus) {
+            if (!this.disabled && !this.readonly && this.$refs.input.$el.value !== getSelection() && this.highlightOnFocus) {
                 event.target.select();
             }
 

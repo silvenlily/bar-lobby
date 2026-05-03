@@ -101,6 +101,6 @@ export class PoolCdnDownloader extends Downloader {
         log.info("Pool data extracted");
 
         await fs.promises.rm(dlFilePath);
-        log.debug(dlFilePath, "Deleted downloaded pool cdn file");
+        log.debug(`Deleted downloaded pool cdn file ${dlFilePath}`);
     }
 }

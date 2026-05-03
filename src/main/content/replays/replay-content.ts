@@ -106,7 +106,7 @@ export class ReplayContentAPI {
         try {
             await fs.promises.rm(path.join(REPLAYS_PATH, fileName));
         } catch (err) {
-            log.error("Error deleting replay", err);
+            log.error(`Error deleting replay ${err}`);
         }
     }
 
@@ -135,7 +135,7 @@ export class ReplayContentAPI {
             // Store the cached replay and dispatch the event
             this.onReplayCached.dispatch(replayData);
         } catch (err) {
-            log.error(`Error caching replay: ${replayFilePath}`, err);
+            log.error(`Error caching replay: ${replayFilePath} ${err}`);
         }
     }
 

@@ -5,17 +5,17 @@ SPDX-License-Identifier: MIT
 -->
 
 <template>
-    <PrimeVueTabView v-bind="$attrs">
+    <PrimeVueTabs value="0" v-bind="$attrs">
         <template v-for="(_, name) in $slots" #[name]="slotData">
             <slot :name="name" v-bind="slotData || {}" />
         </template>
-    </PrimeVueTabView>
+    </PrimeVueTabs>
 </template>
 
 <script lang="ts" setup>
 // https://primefaces.org/primevue/tabview
 import { TabViewProps, TabViewSlots } from "primevue/tabview";
-import PrimeVueTabView from "@renderer/components/primevue/PrimeVueTabView.vue";
+import PrimeVueTabs from "primevue/tabs";
 defineProps<TabViewProps>();
 defineSlots<TabViewSlots>();
 defineEmits<{

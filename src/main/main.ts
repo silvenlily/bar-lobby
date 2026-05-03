@@ -98,6 +98,7 @@ app.commandLine.appendSwitch("disable-pinch", "1");
 
 app.whenReady().then(async () => {
     registerBarFileProtocol();
+    /*
     if (process.env.NODE_ENV !== "production") {
         try {
             // await installExtension(VUEJS_DEVTOOLS);
@@ -105,6 +106,7 @@ app.whenReady().then(async () => {
             log.error("Vue Devtools failed to install:", err?.toString());
         }
     }
+    */
     // Define CSP for all webContents
     session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
         const csp = {
