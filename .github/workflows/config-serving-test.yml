@@ -27,7 +27,7 @@ jobs:
                   node-version: 20
             - name: Install deps
               working-directory: auxiliary/config-serving
-              run: npm ci
+              run: npm ci --registry=https://registry.npmjs.org/
             - name: Typecheck
               working-directory: auxiliary/config-serving
               run: npm run typecheck
