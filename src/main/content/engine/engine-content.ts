@@ -111,7 +111,7 @@ export class EngineContentAPI extends AbstractContentAPI<string, EngineVersion> 
             return engineVersion;
         } catch (err) {
             log.error(err);
-            throw new Error(`Failed to download engine version ${engineVersion}: ${err instanceof Error ? err.message : String(err)}`, {cause:err});
+            throw new Error(`Failed to download engine version ${engineVersion}: ${err instanceof Error ? err.message : String(err)}`, { cause: err });
         }
     }
 

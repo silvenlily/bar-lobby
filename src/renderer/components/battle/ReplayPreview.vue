@@ -7,10 +7,10 @@ SPDX-License-Identifier: MIT
 <template>
     <div class="flex-col gap-md fullheight">
         <TabView>
-            <TabPanel value=0 header="Map">
+            <TabPanel value="0" header="Map">
                 <ReplayPreviewMap :replay="replay" />
             </TabPanel>
-            <TabPanel value=1 header="Details">
+            <TabPanel value="1" header="Details">
                 <div class="scroll-container flex-col" style="height: 550px">
                     <div class="teams padding-bottom-sm">
                         <div v-if="isFFA">

@@ -36,7 +36,7 @@ SPDX-License-Identifier: MIT
                         v-click-away:friends="() => (friendsOpen = false)"
                         :class="['icon', { active: friendsOpen }]"
                         @click="handleFriendsClick"
-                    >6
+                        >6
                         <Icon :icon="accountMultiple" :height="40" />
                     </Button>
                     <DownloadsButton
